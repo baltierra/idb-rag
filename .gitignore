@@ -13,6 +13,31 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# ─── Python venv ────────────────────────────────────
+bin/
+lib/
+lib64/
+include/
+pyvenv.cfg
+share/
+
+# ─── macOS system files ────────────────────────────
+# Icon? files—resource forks
+Icon?
+# Finder metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+# macOS archive metadata
+__MACOSX/
+# Spotlight indexes/trash/fsevents
+.Spotlight-V100
+.Trashes
+.fseventsd/
+
+# ─── Editor swap/temp files (optional) ────────────
+*~
+
 # Mono auto generated files
 mono_crash.*
 
