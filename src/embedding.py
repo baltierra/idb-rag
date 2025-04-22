@@ -1,4 +1,9 @@
-from langchain_community.embeddings.ollama import OllamaEmbeddings
+from langchain_openai import OpenAIEmbeddings
+import os
 
 def get_embedding_function():
-    return OllamaEmbeddings(model="nomic-embed-text")
+    # picks up OPENAI_API_KEY from env/.env
+    return OpenAIEmbeddings(
+        model="text-embedding-3-large",
+        openai_api_key=os.getenv("OPENAI_API_KEY_IDB_RAG")
+    )
