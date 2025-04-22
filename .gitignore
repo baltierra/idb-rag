@@ -16,7 +16,7 @@
 src/data/chroma/
 src/faiss_index/
 src/chroma/
-
+etc/
 # ─── Python venv ────────────────────────────────────
 bin/
 lib/
