@@ -18,6 +18,8 @@ src/faiss_index/
 src/chroma/
 etc/
 etc/jupyter/nbconfig/notebook.d/
+**/__pycache__/
+__pycache__/
 
 # ─── Python venv ────────────────────────────────────
 bin/
