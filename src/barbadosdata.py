@@ -116,6 +116,11 @@ if "messages" not in st.session_state:
         "role": "assistant",
         "content": """👋 Welcome to FactBot Barbados!  
 Ask me anything about Barbados evaluation process or related information.
+
+Some example questions that you can ask me:
+- Can you summarize the main Barbados development challenges covered in the report "Barbados, a Time for Change"?
+- What are the final recommendations in the Extended Country Program Evaluation (XCPE) report for Barbados?
+- Give me a summary of the results of Barbados' Extended Country Program Evaluation report.
 """
     }]
 

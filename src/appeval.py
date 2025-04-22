@@ -113,7 +113,12 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
         "content": """👋 Welcome to AppEval!  
-Ask me anything about IDB country‑program evaluations.
+Ask me anything about IDB country-program evaluations.
+
+Some example questions that you can ask me:
+- What are the years covered in the latest Extended Country Program Evaluation (XCPE) report for Barbados?
+- What are the final recommendations in the Extended Country Program Evaluation (XCPE) report for Costa Rica?
+- Can you summarize the Extended Country Program Evaluation (XCPE) report from Paraguay using one paragraph per report's section?
 """
     }]
 
