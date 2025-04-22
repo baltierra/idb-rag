@@ -13,6 +13,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 .env
+src/data/chroma/
+src/faiss_index/
+src/chroma/
+
 # ─── Python venv ────────────────────────────────────
 bin/
 lib/
