@@ -52,7 +52,7 @@ jsonschema-specifications==2024.10.1
 kubernetes==32.0.0
 langchain==0.2.16
 langchain-community==0.2.16
-langchain-core>=0.3.54
+langchain-core==0.2.39
 langchain-text-splitters==0.2.4
 langsmith==0.1.147
 markdown-it-py==3.0.0

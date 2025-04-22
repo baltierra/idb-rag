@@ -13,21 +13,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 .env
-src/data/chroma/
-src/faiss_index/
-src/chroma/
-etc/
-etc/jupyter/nbconfig/notebook.d/
+.venv/
 **/__pycache__/
 __pycache__/
-
-# ─── Python venv ────────────────────────────────────
-bin/
-lib/
-lib64
-include/
 pyvenv.cfg
-share/
 
 # ─── macOS system files ────────────────────────────
 # Icon? files—resource forks
