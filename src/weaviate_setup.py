@@ -15,29 +15,23 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Weaviate
 
-# Your OpenAI‐based embedding factory
+# OpenAI‐based embedding
 from embedding import get_embedding_function
 
-# ————————————————————————————————————————————————
 # CONFIGURATION
-# ————————————————————————————————————————————————
 WEAVIATE_URL     = os.getenv("WEAVIATE_URL")
 WEAVIATE_API_KEY = os.getenv("WEAVIATE_API_KEY")
 CLASS_NAME       = "CountryEval"
 DATA_DIR         = Path(__file__).parent / "data" / "extended_reports"
 
-# ————————————————————————————————————————————————
 # CONNECT TO WEAVIATE CLOUD (v3 client)
-# ————————————————————————————————————————————————
 client = weaviate.Client(
     url=WEAVIATE_URL,
     auth_client_secret=AuthApiKey(api_key=WEAVIATE_API_KEY),
-    additional_headers={"X-Cors-Header": "*"}  # if you need CORS
+    additional_headers={"X-Cors-Header": "*"}
 )
 
-# ————————————————————————————————————————————————
 # RESET SCHEMA
-# ————————————————————————————————————————————————
 if client.schema.exists(CLASS_NAME):
     print(f"🔄 Deleting existing class `{CLASS_NAME}`")
     client.schema.delete_class(CLASS_NAME)
@@ -45,16 +39,14 @@ if client.schema.exists(CLASS_NAME):
 print(f"➕ Creating class `{CLASS_NAME}`")
 client.schema.create_class({
     "class": CLASS_NAME,
-    "vectorizer": "none",      # we supply our own embeddings
+    "vectorizer": "none",
     "properties": [
         {"name": "content", "dataType": ["text"]},
         {"name": "source",  "dataType": ["string"]}
     ]
 })
 
-# ————————————————————————————————————————————————
 # EMBEDDING & VECTORSTORE SETUP
-# ————————————————————————————————————————————————
 EMBED_FN = get_embedding_function()
 store    = Weaviate(
     client=client,
@@ -65,9 +57,7 @@ store    = Weaviate(
     by_text=False,
 )
 
-# ————————————————————————————————————————————————
 # INGEST PDFS
-# ————————————————————————————————————————————————
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=800, chunk_overlap=80, length_function=len
 )
@@ -84,9 +74,7 @@ for pdf in pdfs:
 
 print("✅ Ingestion complete")
 
-# ————————————————————————————————————————————————
 # SIMPLE QUERY TEST
-# ————————————————————————————————————————————————
 print("\n🔍 Testing similarity search…")
 hits = store.similarity_search_with_score(
     "For what countries do you handle the Extended Country Program Evaluation?",
