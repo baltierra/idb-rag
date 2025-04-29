@@ -7,7 +7,6 @@ import sys
 from weaviate import Client, AuthApiKey
 
 # ─── Load .env ─────────────────────────────────────────────────
-# assumes .env lives one level above src/
 env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
