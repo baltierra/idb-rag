@@ -57,7 +57,7 @@ store    = Weaviate(
     index_name="CountryEval",
     text_key="content",
     embedding=embedder,
-    by_text=False,       # force nearVector
+    by_text=False,      
     attributes=["source"],
 )
 
@@ -70,13 +70,13 @@ information in reports, being able to answer questions about those reports.
 
 # ─── RAG FUNCTION ─────────────────────────────────────────────
 def generate_response(question: str, k: int = 5) -> str:
-    # 1) Retrieve top‑k chunks
+    # Retrieve top‑k chunks
     docs_and_scores = store.similarity_search_with_score(question, k=k)
 
-    # 2) Build the “context” block
+    # Build the “context” block
     context = "\n\n---\n\n".join(doc.page_content for doc, _ in docs_and_scores)
 
-    # 3) Compose OpenAI Chat messages
+    # Compose OpenAI Chat messages
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": f"""
@@ -92,7 +92,7 @@ and cite each fact with the source PDF filename and page number.
 """}
     ]
 
-    # 4) Call GPT‑4.1
+    # Call GPT‑4.1
     resp = openai.chat.completions.create(
         model="gpt-4.1",
         messages=messages,
@@ -101,11 +101,11 @@ and cite each fact with the source PDF filename and page number.
     )
     answer = resp.choices[0].message.content.strip()
 
-    # 5) List unique sources
+    # List unique sources
     sources = sorted({doc.metadata.get("source","unknown") for doc, _ in docs_and_scores})
     sources_md = "\n".join(f"- {s}" for s in sources)
 
-    # 6) Return answer + source list
+    # Return answer + source list
     return f"{answer}\n\n**Sources:**\n{sources_md}"
 
 # ─── STREAMLIT CHAT UI ────────────────────────────────────────
